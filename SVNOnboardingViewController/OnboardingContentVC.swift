@@ -29,8 +29,8 @@ class OnboardingContentViewController: UIViewController {
     imageView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 55)
   }
   
-  init(imageName: String){
-    self.image = UIImage(named: imageName)!
+  init(image: UIImage){
+    self.image = image
     super.init(nibName: nil, bundle: nil)
   }
   

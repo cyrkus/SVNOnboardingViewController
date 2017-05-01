@@ -13,7 +13,9 @@ import SVNModalViewController
 
 open class OnboardingViewController: SVNModalViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
   
-  open var imageFileNames: [String]
+  open var images: [UIImage]
+  
+  open var shouldSetSVNModalSubViews = true
   
   private lazy var pageViewController: UIPageViewController = self.pageVCFactory()
   
@@ -28,8 +30,8 @@ open class OnboardingViewController: SVNModalViewController, UIPageViewControlle
   private lazy var orderedViewControllers: [UIViewController] = {
     
     var vcs = [UIViewController]()
-    for image in self.imageFileNames {
-      vcs.append(OnboardingContentViewController(imageName: image))
+    for image in self.images {
+      vcs.append(OnboardingContentViewController(image: image))
     }
     return vcs
   }()
@@ -58,14 +60,15 @@ open class OnboardingViewController: SVNModalViewController, UIPageViewControlle
     pc.layer.shadowRadius = 5
     pc.isUserInteractionEnabled = false
     pc.currentPageIndicatorTintColor = .white
-    pc.numberOfPages = imageFileNames.count
+    pc.numberOfPages = images.count
     return pc
   }
   
   
-  public init(theme: SVNTheme, imageFileNames: [String]){
-    self.imageFileNames = imageFileNames
+  public init(theme: SVNTheme, images: [UIImage], setModalSubviews: Bool){
+    self.images = images
     super.init(nibName: nil, bundle: nil)
+    self.shouldSetSVNModalSubViews = setModalSubviews
     self.theme = theme
   }
   
@@ -83,7 +86,9 @@ open class OnboardingViewController: SVNModalViewController, UIPageViewControlle
     pageViewController.didMove(toParentViewController: self)
     view.addSubview(pageViewController.view)
     pageViewController.view.addSubview(pageControl)
-    addModalSubviews()
+    if shouldSetSVNModalSubViews {
+      addModalSubviews()
+    }
     if let firstViewController = orderedViewControllers.first {
       pageViewController.setViewControllers([firstViewController],
                                             direction: .forward,

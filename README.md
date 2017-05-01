@@ -1,25 +1,28 @@
  [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-#SVNCarthageBootstrap
-A quick and dirty repo to bootstrap carthage framework development.
+#SVNOnboardingViewController
+A image based Onboarding UIPageViewController.
 <p align="center">
-  <img src="" alt=""/>
+  <img src="/images/img.PNG" alt=""/>
 </p>
 
+Submodules include:
+SVNModalViewController
+SVNTheme
+SVNShapesManager
 
 ## To use this framework
-Copy and paste the contents (sans .git folder) into a project folder.
-To initialize your project for Carthage use and make sure you have Carthage installed:
+To initialize an instance of this class call:
 
-    bin/setup
+    init(theme: images:, setModalSubviews:)
 
-Once you've updated the **Cartfile**, to pull down your dependencies call:
+The pageControl background is set to *primaryDialogColor*
 
-    bin/update
+Be sure that this ViewController is presented Modally!
+Otherwise subclass it, override shouldDismiss(), and pass in false to the super.init above.
 
 
 ## To install this framework
-
 Add Carthage files to your .gitignore
 
     #Carthage
