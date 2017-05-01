@@ -2,9 +2,9 @@
 
 #SVNOnboardingViewController
 A image based Onboarding UIPageViewController.
-<p align="center">
+<!-- <p align="center">
   <img src="/images/img.PNG" alt=""/>
-</p>
+</p> -->
 
 Submodules include:
 SVNModalViewController
